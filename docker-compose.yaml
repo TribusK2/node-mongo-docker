@@ -1,0 +1,11 @@
+version: '3'
+services: 
+    my_mongo_service:
+        container_name: 'my_mongo_service'
+        image: 'my_mongo'
+    
+    my_backend_serice:
+        container_name: 'my_backend_serice'
+        image: 'my_backend'
+        ports: 
+            - 8090:8090
