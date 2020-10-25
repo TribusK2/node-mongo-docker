@@ -1,1 +1,1 @@
-docker build -t my_backend .
+docker build -t krytlewski/my_backend:latest .

@@ -1,1 +1,1 @@
-docker build -t my_mongo .
+docker build -t krytlewski/my_mongo:latest .
