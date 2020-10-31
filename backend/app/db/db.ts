@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 
-const uri: string = "mongodb://my_mongo_service:27017/local";
+const uri: string = "mongodb://bloger:123zxc@my_mongo_service:27017/blog";
 
 export async function connectDb() {
   try {

@@ -9,5 +9,7 @@ services:
     my_backend_service:
         container_name: 'my_backend_service'
         image: 'krytlewski/my_backend:latest'
+        depends_on:
+            - my_mongo_service
         ports: 
             - 8090:8090
