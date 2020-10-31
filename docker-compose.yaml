@@ -6,8 +6,8 @@ services:
         ports: 
             - 27017:27017
     
-    my_backend_serice:
-        container_name: 'my_backend_serice'
+    my_backend_service:
+        container_name: 'my_backend_service'
         image: 'krytlewski/my_backend:latest'
         ports: 
             - 8090:8090

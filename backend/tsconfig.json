@@ -8,8 +8,5 @@
         "noEmitOnError": true,
         "outDir": "./dist",
         "skipLibCheck": true
-    },
-    "files": [
-        "./app/server.ts"
-    ]
+    }
 }
