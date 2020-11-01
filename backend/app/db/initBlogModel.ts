@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 
-export function blogModel() {
+function blogModel() {
   const { Schema } = mongoose;
 
   const blogSchema = new Schema({
@@ -20,5 +20,7 @@ export function blogModel() {
 
   const Blog = mongoose.model('Blog', blogSchema);
 
-  return Blog
+  return Blog;
 }
+
+export const BlogModel = blogModel();

@@ -19,7 +19,8 @@ async function startApp() {
     }
   } catch (err) {
     logger.error('Error on application start ->', err)
-    await mongoose.connection.close();
-    logger.warn("DB disconnected");
+    const conn = mongoose.connection;
+    await conn.close();
+    if(conn.readyState === 0) logger.warn(`DB '${conn.name}' disconnected`);
   };
 }
