@@ -1,7 +1,7 @@
 import { AddressInfo } from 'net'
 import * as mongoose from "mongoose";
 
-import { connectDb } from './db/db'
+import { connectDb } from './db/db-conn'
 import { startServer } from './server/server'
 import { getLoggerWithConf } from './logs/logger-conf';
 

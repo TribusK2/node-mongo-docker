@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { BlogModel } from "../db/initBlogModel";
+import { BlogModel } from "../db/model/initBlogModel";
 import { getLoggerWithConf } from '../logs/logger-conf';
 
 const logger = getLoggerWithConf(`${__filename}`);

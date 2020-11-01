@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { BlogModel } from "../db/initBlogModel";
+import { BlogModel } from "../db/model/initBlogModel";
 import { Blog } from "../../shared/model/blog-model";
 import { getLoggerWithConf } from '../logs/logger-conf';
 
@@ -18,7 +18,7 @@ export async function apiCreateBlog(req: Request, res: Response) {
     });
 
     const result = await newBlog.save();
-    logger.info(`New blog '${newBlog.toJSON().title}' created`);
+    logger.info(`New blog '${result.toJSON().title}' created`);
 
     res.status(200).send(result);
   }

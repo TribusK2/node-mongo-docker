@@ -14,6 +14,7 @@ const port = 8090;
 export async function startServer(): Promise<Server | undefined> {
   try {
     app.use(bodyParser.json());
+    
     await initAPI(app);
     logger.info('API initialized')
 
