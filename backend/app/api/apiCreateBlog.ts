@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import { BlogModel } from "../db/model/initBlogModel";
 import { Blog } from "../../shared/model/blog-model";
@@ -6,7 +6,7 @@ import { getLoggerWithConf } from '../logs/logger-conf';
 
 const logger = getLoggerWithConf(`${__filename}`);
 
-export async function apiCreateBlog(req: Request, res: Response) {
+export async function apiCreateBlog(req: Request, res: Response, next: NextFunction) {
 
   try {
     const reqBody: Blog = req.body;
@@ -23,7 +23,9 @@ export async function apiCreateBlog(req: Request, res: Response) {
     res.status(200).send(result);
   }
   catch (err) {
-    logger.error('Error on create blog ->', err);
+    err.title = 'Error on create blog';
+    err.path = __filename;
+    next(err);
   }
 
 }
