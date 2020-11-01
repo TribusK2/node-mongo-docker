@@ -2,9 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { BlogModel } from "../db/model/initBlogModel";
 import { Blog } from "../../shared/model/blog-model";
-import { getLoggerWithConf } from '../logs/logger-conf';
-
-const logger = getLoggerWithConf(`${__filename}`);
+import { onSuccess } from './onSuccess';
 
 export async function apiCreateBlog(req: Request, res: Response, next: NextFunction) {
 
@@ -18,9 +16,9 @@ export async function apiCreateBlog(req: Request, res: Response, next: NextFunct
     });
 
     const result = await newBlog.save();
-    logger.info(`New blog '${result.toJSON().title}' created`);
 
-    res.status(200).send(result);
+    const successMessage = `New blog '${result.toJSON().title}' created successfully in DB`;
+    onSuccess(res, result, successMessage, __filename);
   }
   catch (err) {
     err.title = 'Error on create blog';
