@@ -1,8 +1,8 @@
 # step 1
 FROM node:alpine
 
-VOLUME [ "/app" ]
-WORKDIR /app
+VOLUME [ "/backend_app" ]
+WORKDIR /backend_app
 
 COPY ["package.json", "package-lock.json*", "./"]
 

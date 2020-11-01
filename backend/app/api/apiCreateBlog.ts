@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 
 import { blogModel } from "../db/blog-dbModel";
 import { Blog } from "../../shared/model/blog-model";
+import { getLoggerWithConf } from '../logs/logger-conf';
+
+const logger = getLoggerWithConf(`${__filename}`);
 
 export async function apiCreateBlog(req: Request, res: Response) {
 
@@ -16,11 +19,11 @@ export async function apiCreateBlog(req: Request, res: Response) {
     });
 
     const result = await newBlog.save();
-    console.log('New blog created')
+    logger.info('New blog created')
     res.status(200).send(result);
   }
   catch (err) {
-    console.log('Error on create blog -> ', err);
+    logger.error('Error on create blog ->', err);
   }
 
 

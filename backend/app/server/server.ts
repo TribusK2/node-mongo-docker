@@ -4,6 +4,9 @@ import { Server } from 'http';
 import * as bodyParser  from 'body-parser';
 
 import { initAPI } from '../api/api'
+import { getLoggerWithConf } from '../logs/logger-conf';
+
+const logger = getLoggerWithConf(`${__filename}`);
 
 const app: Application = express();
 const port = 8090;
@@ -12,7 +15,7 @@ export async function startServer(): Promise<Server | undefined> {
   try {
     app.use(bodyParser.json());
     await initAPI(app);
-    console.log('API initialized')
+    logger.info('API initialized')
 
     return new Promise((resolve, reject) => {
       const server = app.listen(port);
@@ -20,6 +23,6 @@ export async function startServer(): Promise<Server | undefined> {
     })
   }
   catch (err) {
-    console.log('Error on server start -> ', err);
+    logger.error('Error on server start ->', err);
   }
 }

@@ -3,7 +3,9 @@ import * as mongoose from "mongoose";
 
 import { connectDb } from './db/db'
 import { startServer } from './server/server'
-import { blogModel } from './db/blog-dbModel';
+import { getLoggerWithConf } from './logs/logger-conf';
+
+const logger = getLoggerWithConf(`${__filename}`);
 
 startApp();
 
@@ -13,11 +15,11 @@ async function startApp() {
     const server = await startServer();
     if (server) {
       const address = server.address() as AddressInfo;
-      console.log(`Server is running on port: ${address.port}`);
+      logger.info(`Server is running on port: ${address.port}`);
     }
   } catch (err) {
-    console.log('Error on application start -> ', err)
+    logger.error('Error on application start ->', err)
     await mongoose.connection.close();
-    console.log("DB disconnected");
+    logger.warn("DB disconnected");
   };
 }
