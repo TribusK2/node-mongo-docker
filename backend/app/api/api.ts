@@ -1,16 +1,23 @@
 import { Application } from 'express';
+import { appErrorHandler } from '../appErrorHandler';
 
-import { apiCreateBlog } from './apiCreateBlog';
-import { apiGetAllBlog } from './apiGetAllBlogs';
-import { apiGetBlogById } from './apiGetBlogById';
+import { getLoggerWithConf } from '../logs/logger-conf';
+import { blogsRoutesRegister } from './blogs/blogs.routes';
 
-export async function initAPI(app: Application): Promise<Application> {
+const logger = getLoggerWithConf(`${__filename}`);
 
-  app.route('/api/blogs').post(apiCreateBlog);
-  app.route('/api/blogs').get(apiGetAllBlog);
-  app.route('/api/blogs/:id').get(apiGetBlogById);
+export async function initAPI(app: Application): Promise<Application | undefined> {
+  try {
+    const blogRoutes = await blogsRoutesRegister(app);
+    if(!blogRoutes) return;
+    logger.info("'blogs' routes registered");
 
-  return new Promise((resolve, reject) => {
-    resolve(app)
-  })
+    return new Promise((resolve, reject) => {
+      resolve(app)
+    })
+  } catch (err) {
+    err.title = 'Error on API init ->';
+    err.path = __filename;
+    appErrorHandler(err);
+  }
 }

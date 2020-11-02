@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
-import { Blog } from '../../shared/model/blog-model';
+import { Blog } from '../../../shared/model/blog-model';
 
-import { ErrorBlock } from '../../shared/model/error-block-model';
-import { BlogModel } from "../db/model/initBlogModel";
-import { onSuccess } from './onSuccess';
+import { ErrorBlock } from '../../../shared/model/error-block-model';
+import { BlogModel } from "../../db/model/initBlogModel";
+import { onSuccess } from '../onSuccess';
 
 export async function apiGetBlogById(req: Request, res: Response, next: NextFunction) {
 

@@ -1,5 +1,6 @@
 import * as mongoose from "mongoose";
 
+import { appErrorHandler } from "../appErrorHandler";
 import { getLoggerWithConf } from "../logs/logger-conf";
 
 const logger = getLoggerWithConf(`${__filename}`);
@@ -15,6 +16,8 @@ export async function connectDb() {
     logger.info(`User '${dbUser}' to DB '${dbName}' connected`);
   }
   catch (err) {
-    logger.error('Error on db connect ->', err.message);
+    err.title = 'Error on db connect ->';
+    err.path = __filename;
+    appErrorHandler(err);
   }
 }

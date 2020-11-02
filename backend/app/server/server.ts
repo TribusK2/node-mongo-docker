@@ -6,6 +6,7 @@ import * as bodyParser  from 'body-parser';
 import { initAPI } from '../api/api'
 import { getLoggerWithConf } from '../logs/logger-conf';
 import { apiErrorHandler } from '../api/apiErrorHandler';
+import { appErrorHandler } from '../appErrorHandler';
 
 const logger = getLoggerWithConf(`${__filename}`);
 
@@ -16,7 +17,8 @@ export async function startServer(): Promise<Server | undefined> {
   try {
     app.use(bodyParser.json());
 
-    await initAPI(app);
+    const apiInitalized = await initAPI(app);
+    if(!apiInitalized) return;
     logger.info('API initialized');
 
     app.use(apiErrorHandler);
@@ -27,6 +29,8 @@ export async function startServer(): Promise<Server | undefined> {
     })
   }
   catch (err) {
-    logger.error('Error on server start ->', err);
+    err.title = 'Error on server start ->';
+    err.path = __filename;
+    appErrorHandler(err);
   }
 }

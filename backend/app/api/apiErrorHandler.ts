@@ -25,5 +25,5 @@ export function apiErrorHandler(err: any, req: Request, res: Response, next: Nex
     }
 
     res.status(500).json(errorBlock);
-    next();
+    return next();
 }
