@@ -16,8 +16,9 @@ export async function apiCreateBlog(req: Request, res: Response, next: NextFunct
     });
 
     const result = await newBlog.save();
+    const resultObj = result.toJSON() as Blog;
 
-    const successMessage = `New blog '${result.toJSON().title}' created successfully in DB`;
+    const successMessage = `New blog '${resultObj.title}' created successfully in DB`;
     onSuccess(res, result, successMessage, __filename);
   }
   catch (err) {
