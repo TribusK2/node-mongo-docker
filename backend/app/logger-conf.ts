@@ -14,7 +14,7 @@ const LOGGER_CONFIGURATION: Configuration = {
     },
     storeErrors: {
       type: "file",
-      filename: "error.log"
+      filename: "app/logs/errors.log"
     },
     errors: {
       type: "logLevelFilter",

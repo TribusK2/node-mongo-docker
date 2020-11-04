@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { ErrorBlock } from '../../shared/model/error-block-model';
-import { getLoggerWithConf } from '../logs/logger-conf';
+import { getLoggerWithConf } from '../logger-conf';
 
 export function apiErrorHandler(err: any, req: Request, res: Response, next: NextFunction) {
 

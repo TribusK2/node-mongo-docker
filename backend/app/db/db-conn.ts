@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 
 import { appErrorHandler } from "../appErrorHandler";
-import { getLoggerWithConf } from "../logs/logger-conf";
+import { getLoggerWithConf } from "../logger-conf";
 
 const logger = getLoggerWithConf(`${__filename}`);
 

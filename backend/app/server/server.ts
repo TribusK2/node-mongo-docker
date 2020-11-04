@@ -4,7 +4,7 @@ import { Server } from 'http';
 import * as bodyParser  from 'body-parser';
 
 import { initAPI } from '../api/api'
-import { getLoggerWithConf } from '../logs/logger-conf';
+import { getLoggerWithConf } from '../logger-conf';
 import { apiErrorHandler } from '../api/apiErrorHandler';
 import { appErrorHandler } from '../appErrorHandler';
 

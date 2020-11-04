@@ -1,7 +1,7 @@
 import { Application } from 'express';
 import { appErrorHandler } from '../appErrorHandler';
 
-import { getLoggerWithConf } from '../logs/logger-conf';
+import { getLoggerWithConf } from '../logger-conf';
 import { blogsRoutesRegister } from './blogs/blogs.routes';
 
 const logger = getLoggerWithConf(`${__filename}`);
