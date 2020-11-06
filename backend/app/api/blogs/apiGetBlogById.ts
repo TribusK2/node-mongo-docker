@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { Blog } from '../../../shared/model/blog-model';
+import { Blog } from '../../../model/blog-model';
 
-import { ErrorBlock } from '../../../shared/model/error-block-model';
+import { ErrorBlock } from '../../../model/error-block-model';
 import { BlogModel } from "../../db/model/initBlogModel";
 import { onSuccess } from '../onSuccess';
 

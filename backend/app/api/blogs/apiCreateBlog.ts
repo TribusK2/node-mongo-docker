@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { BlogModel } from "../../db/model/initBlogModel";
-import { Blog } from "../../../shared/model/blog-model";
+import { Blog } from "../../../model/blog-model";
 import { onSuccess } from '../onSuccess';
 
 export async function apiCreateBlog(req: Request, res: Response, next: NextFunction) {

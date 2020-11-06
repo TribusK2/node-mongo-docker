@@ -1,3 +1,5 @@
+sh update-model.sh
+
 cd ./backend
 sh build.sh
 

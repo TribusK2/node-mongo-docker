@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { Blog } from '../../../shared/model/blog-model';
+import { Blog } from '../../../model/blog-model';
 
 import { BlogModel } from "../../db/model/initBlogModel";
 import { onSuccess } from '../onSuccess';
