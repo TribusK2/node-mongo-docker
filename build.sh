@@ -1,6 +1,7 @@
-sh update-model.sh
+cd common
+sh update-all-models.sh
 
-cd ./backend
+cd ../backend
 sh build.sh
 
 cd ../mongo
