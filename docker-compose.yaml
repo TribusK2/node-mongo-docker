@@ -2,13 +2,22 @@ version: '3'
 services: 
     my_mongo_service:
         container_name: 'my_mongo_service'
-        image: 'krytlewski/my_mongo:latest'
+        image: mongo:4.4
+        restart: always
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=my_Admin
+            - MONGO_INITDB_ROOT_PASSWORD=123zxc
         ports: 
             - 27017:27017
-    
+        volumes:
+            - ./dbs/mongo-entrypoint/entrypoint.js:/docker-entrypoint-initdb.d/entrypoint.js
+            - ./dbs/mongo:/data/db
+        command: mongod
+
     my_backend_service:
         container_name: 'my_backend_service'
         image: 'krytlewski/my_backend:latest'
+        restart: always
         depends_on:
             - my_mongo_service
         ports: 
