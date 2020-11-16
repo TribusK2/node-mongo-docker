@@ -24,3 +24,7 @@ services:
             - 8090:8090
         volumes:
             - ./logs/backend:/backend_app/app/logs
+        environment:
+            WAIT_HOSTS: my_mongo_service:27017
+            WAIT_HOSTS_TIMEOUT: 90
+            WAIT_SLEEP_INTERVAL: 2

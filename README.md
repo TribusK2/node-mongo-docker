@@ -25,3 +25,7 @@ Deleting files in app model folder will not take any effect on common folder, so
 # 3. Logs
 All logs from backend are logged in their console. Use command `docker logs -f my_backend_service` in terminal to view them.<br>
 Error logs of the running server are stored in the external file `./logs/backend/errors.log` in separate Docker volume and will be accessible even if all containers down. File will create automatically when backend container start.
+
+# 4. Database
+App use Mongo database which is stored in folder `./dbs/mongo` as Docker volume. This allow to keep database after all docker containers down. App will automatically connect Docker's keeped database base on configuration in `./docker-compose.yaml` file.<br>
+Stop All Docker containers and remove folder `./dbs/mongo` to clear database, e.g. by PowerShell with command `Remove-Item ./mongo -Recurse -Force` inside `./dbs/` directory (You will need admin permissions). New clear instance of the database will create automatically after call command `docker-compose up -d`.
