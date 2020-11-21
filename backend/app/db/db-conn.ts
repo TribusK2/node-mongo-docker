@@ -12,7 +12,7 @@ const uri: string = `mongodb://${dbUser}:${dbPass}@my_mongo_service:27017/${dbNa
 
 export async function connectDb() {
   try {
-    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
     logger.info(`User '${dbUser}' to DB '${dbName}' connected`);
   }
   catch (err) {

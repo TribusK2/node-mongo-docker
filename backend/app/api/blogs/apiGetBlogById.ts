@@ -4,7 +4,7 @@ import * as mongoose from "mongoose";
 import { Blog } from '../../../model/blog-model';
 import { ErrorBlock } from '../../../model/error-block-model';
 import { BlogModel } from "../../db/model/initBlogModel";
-import { mongoIdValidation } from '../mongoIdValidation';
+import { mongoIdValidation } from '../../service/validation-service';
 import { onSuccess } from '../onSuccess';
 
 export async function apiGetBlogById(req: Request, res: Response, next: NextFunction) {

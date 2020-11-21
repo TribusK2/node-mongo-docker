@@ -3,11 +3,13 @@ import { NextFunction, Request, Response } from 'express';
 import { BlogModel } from "../../db/model/initBlogModel";
 import { Blog } from "../../../model/blog-model";
 import { onSuccess } from '../onSuccess';
+import { blogModelValidation } from '../../service/validation-service';
 
 export async function apiCreateBlog(req: Request, res: Response, next: NextFunction) {
 
   try {
     const reqBody: Blog = req.body;
+    blogModelValidation(reqBody);
 
     const newBlog = new BlogModel({
       title: reqBody.title,

@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { BlogModel } from "../../db/model/initBlogModel";
 import { onSuccess } from '../onSuccess';
 import { ErrorBlock } from '../../../model/error-block-model';
-import { mongoIdValidation } from '../mongoIdValidation';
+import { mongoIdValidation } from '../../service/validation-service';
 
 export async function apiRemoveBlog(req: Request, res: Response, next: NextFunction) {
 

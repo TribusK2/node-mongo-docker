@@ -1,5 +1,4 @@
-import { Configuration, Logger } from "log4js";
-import { configure, getLogger } from "log4js";
+import { Configuration, Logger, configure, getLogger } from "log4js";
 
 // Passible value: all, trace, debug, info, warn, error, fatal, mark, off
 const globalLoggerLevel = 'debug';
