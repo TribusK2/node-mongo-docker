@@ -4,6 +4,7 @@ import { appErrorHandler } from '../../appErrorHandler';
 import { apiCreateBlog } from './apiCreateBlog';
 import { apiGetAllBlog } from './apiGetAllBlogs';
 import { apiGetBlogById } from './apiGetBlogById';
+import { apiRemoveBlog } from './apiRemoveBlog';
 import { apiUpdateBlog } from './apiUpdateBlog';
 
 export async function blogsRoutesRegister(app: Application): Promise<Application | undefined> {
@@ -12,6 +13,7 @@ export async function blogsRoutesRegister(app: Application): Promise<Application
     app.route('/api/blogs').get(apiGetAllBlog);
     app.route('/api/blogs/:id').get(apiGetBlogById);
     app.route('/api/blogs/:id').put(apiUpdateBlog);
+    app.route('/api/blogs/:id').delete(apiRemoveBlog);
 
     return new Promise((resolve, reject) => {
       resolve(app)
