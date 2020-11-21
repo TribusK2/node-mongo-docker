@@ -12,4 +12,4 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
 COPY . .
 
-CMD /wait && npm run start
+CMD /wait && npm run debug

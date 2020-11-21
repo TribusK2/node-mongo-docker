@@ -22,6 +22,7 @@ services:
             - my_mongo_service
         ports: 
             - 8090:8090
+            - 9090:9229
         volumes:
             - ./logs/backend:/backend_app/app/logs
         environment:
