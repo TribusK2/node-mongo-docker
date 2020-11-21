@@ -1,4 +1,4 @@
-var db = connect("mongodb://my_Admin:123zxc@localhost:27017/admin");
+let db = connect("mongodb://my_Admin:123zxc@localhost:27017/admin");
 
 db = db.getSiblingDB('blog');
 
