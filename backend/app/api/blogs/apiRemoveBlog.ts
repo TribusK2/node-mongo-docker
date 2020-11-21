@@ -3,11 +3,13 @@ import { NextFunction, Request, Response } from 'express';
 import { BlogModel } from "../../db/model/initBlogModel";
 import { onSuccess } from '../onSuccess';
 import { ErrorBlock } from '../../../model/error-block-model';
+import { mongoIdValidation } from '../mongoIdValidation';
 
 export async function apiRemoveBlog(req: Request, res: Response, next: NextFunction) {
 
   try {
     const blogId = req.params.id.toString();
+    mongoIdValidation(blogId);
 
     const resultObj = await BlogModel.findByIdAndDelete(blogId);
     if (resultObj) {

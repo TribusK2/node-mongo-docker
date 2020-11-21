@@ -4,11 +4,13 @@ import { BlogModel } from "../../db/model/initBlogModel";
 import { Blog } from "../../../model/blog-model";
 import { onSuccess } from '../onSuccess';
 import { ErrorBlock } from '../../../model/error-block-model';
+import { mongoIdValidation } from '../mongoIdValidation';
 
 export async function apiUpdateBlog(req: Request, res: Response, next: NextFunction) {
 
   try {
     const blogId = req.params.id.toString();
+    mongoIdValidation(blogId);
     const reqBody: Blog = req.body;
 
     const resultObj = await BlogModel.findByIdAndUpdate(blogId, reqBody, {new: true});

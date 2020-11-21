@@ -18,6 +18,12 @@ export function apiErrorHandler(err: any, req: Request, res: Response, next: Nex
     if(err.title) errorBlock.title = err.title;
     if(err.message) errorBlock.message = err.message;
 
+    if (err.status === 400){
+        errorBlock.status = err.status;
+        res.status(400).json(errorBlock);
+        return next();
+    }
+
     if (err.status === 404){
         errorBlock.status = err.status;
         res.status(404).json(errorBlock);

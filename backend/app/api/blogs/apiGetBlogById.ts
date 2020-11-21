@@ -1,14 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
-import { Blog } from '../../../model/blog-model';
+import * as mongoose from "mongoose";
 
+import { Blog } from '../../../model/blog-model';
 import { ErrorBlock } from '../../../model/error-block-model';
 import { BlogModel } from "../../db/model/initBlogModel";
+import { mongoIdValidation } from '../mongoIdValidation';
 import { onSuccess } from '../onSuccess';
 
 export async function apiGetBlogById(req: Request, res: Response, next: NextFunction) {
 
   try {
     const blogId = req.params.id.toString();
+    mongoIdValidation(blogId);
 
     const resultObj = await BlogModel.findById(blogId).lean() as Blog;
     if (resultObj) {
