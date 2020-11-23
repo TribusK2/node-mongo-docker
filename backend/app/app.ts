@@ -3,10 +3,8 @@ import * as mongoose from "mongoose";
 
 import { connectDb } from './db/db-conn'
 import { startServer } from './server/server'
-import { getLoggerWithConf } from './logger-conf';
+import { appLogger } from './logger-conf';
 import { appErrorHandler } from './appErrorHandler';
-
-const logger = getLoggerWithConf(`${__filename}`);
 
 startApp();
 
@@ -18,7 +16,7 @@ async function startApp() {
     const server = await startServer();
     if (!server) return;
     const address = server.address() as AddressInfo;
-    logger.info(`Server is running on port: ${address.port}`);
+    appLogger.info(`${__filename} |`, `Server is running on port: ${address.port}`);
   } 
   catch (err) {
     err.title = 'Error on application start ->';

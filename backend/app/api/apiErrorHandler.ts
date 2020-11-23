@@ -1,13 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { ErrorBlock } from '../../model/error-block-model';
-import { getLoggerWithConf } from '../logger-conf';
+import { apiLogger } from '../logger-conf';
 
 export function apiErrorHandler(err: any, req: Request, res: Response, next: NextFunction) {
 
     const loggerPath = err.path || __filename;
-    const logger = getLoggerWithConf(`${loggerPath}`);
-    err.message? logger.error("API ERROR ->", err.message) : logger.error("API ERROR ->", err);
+    err.message? apiLogger.error(`${loggerPath} | API ERROR ->`, err.message) : apiLogger.error(`${loggerPath} | API ERROR ->`, err);
 
     let errorBlock: ErrorBlock = {
         status: 500,

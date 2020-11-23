@@ -1,11 +1,10 @@
 import { Response } from 'express';
 
-import { getLoggerWithConf } from '../logger-conf';
+import { apiLogger } from '../logger-conf';
 
 export function onSuccess(res: Response, data: any, message?: string, path?: string) {
   if (path && message) {
-    const logger = getLoggerWithConf(`${path}`);
-    logger.info("API INFO ->", `${message}`);
+    apiLogger.info(`${path} | API INFO ->`, `${message}`);
   };
 
   res.status(200).json({ payload: data });

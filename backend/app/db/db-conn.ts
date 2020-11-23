@@ -1,9 +1,7 @@
 import * as mongoose from "mongoose";
 
 import { appErrorHandler } from "../appErrorHandler";
-import { getLoggerWithConf } from "../logger-conf";
-
-const logger = getLoggerWithConf(`${__filename}`);
+import { appLogger } from "../logger-conf";
 
 const dbName = "blog";
 const dbUser = "bloger";
@@ -13,7 +11,7 @@ const uri: string = `mongodb://${dbUser}:${dbPass}@my_mongo_service:27017/${dbNa
 export async function connectDb() {
   try {
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-    logger.info(`User '${dbUser}' to DB '${dbName}' connected`);
+    appLogger.info(`${__filename} |`, `User '${dbUser}' to DB '${dbName}' connected`);
   }
   catch (err) {
     err.title = 'Error on db connect ->';

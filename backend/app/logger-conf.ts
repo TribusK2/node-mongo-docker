@@ -29,8 +29,7 @@ const LOGGER_CONFIGURATION: Configuration = {
   }
 }
 
-export function getLoggerWithConf(name: string): Logger {
-  const logger = getLogger(name);
-  configure(LOGGER_CONFIGURATION);
-  return logger;
-}
+configure(LOGGER_CONFIGURATION);
+
+export const apiLogger = getLogger('API');
+export const appLogger = getLogger('APP');
