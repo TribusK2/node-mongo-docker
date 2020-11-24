@@ -11,6 +11,10 @@ import { appErrorHandler } from '../appErrorHandler';
 const app: Application = express();
 const port = 8090;
 
+/**
+ * Setup server
+ * @returns Promise
+ */
 export async function startServer(): Promise<Server | undefined> {
   try {
     app.use(bodyParser.json());

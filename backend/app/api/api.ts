@@ -2,10 +2,15 @@ import { Application } from 'express';
 import { appErrorHandler } from '../appErrorHandler';
 
 import { appLogger } from '../logger-conf';
-import { blogsRouteRegister } from './blog/blog.routes';
+import { blogsRouteRegister } from './routes/blog.routes';
 
 const apiMainRoute = '/api';
 
+/**
+ * Setup all routes of the app
+ * @param  {Application} app
+ * @returns Promise
+ */
 export async function initAPI(app: Application): Promise<Application | undefined> {
   try {
     const routes = [
@@ -26,6 +31,13 @@ export async function initAPI(app: Application): Promise<Application | undefined
   }
 }
 
+/**
+ * Common function to register any route
+ * @param  {Application} app
+ * @param  {string} routeUrl
+ * @param  {Function} registerFunction
+ * @returns Promise
+ */
 async function routeRegister(app: Application, routeUrl: string, registerFunction: Function): Promise<Application | undefined> {
   try {
     const route = await registerFunction(app, `${apiMainRoute}${routeUrl}`);

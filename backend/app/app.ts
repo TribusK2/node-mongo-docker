@@ -8,7 +8,11 @@ import { appErrorHandler } from './appErrorHandler';
 
 startApp();
 
-async function startApp() {
+/**
+ * Start the app
+ * @returns Promise
+ */
+async function startApp(): Promise<void> {
   try {
     await connectDb();
     if (mongoose.connection.readyState === 0) return;
@@ -17,7 +21,7 @@ async function startApp() {
     if (!server) return;
     const address = server.address() as AddressInfo;
     appLogger.info(`${__filename} |`, `Server is running on port: ${address.port}`);
-  } 
+  }
   catch (err) {
     err.title = 'Error on application start ->';
     err.path = __filename;

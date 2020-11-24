@@ -1,13 +1,15 @@
 import { Application } from 'express';
 
 import { appErrorHandler } from '../../appErrorHandler';
-import { apiCreateBlog } from './apiCreateBlog';
-import { apiGetAllBlog } from './apiGetAllBlogs';
-import { apiGetBlogById } from './apiGetBlogById';
-import { apiRemoveBlog } from './apiRemoveBlog';
-import { apiUpdateBlog } from './apiUpdateBlog';
+import { apiCreateBlog, apiGetAllBlog, apiGetBlogById, apiRemoveBlog, apiUpdateBlog } from '../controllers/blog.controller';
 
-export async function blogsRouteRegister(app: Application, routeUrl: string): Promise<Application | undefined | any> {
+/**
+ * Define and register 'blog' routes in the app
+ * @param  {Application} app
+ * @param  {string} routeUrl
+ * @returns Promise
+ */
+export async function blogsRouteRegister(app: Application, routeUrl: string): Promise<Application | undefined> {
   try {
     app.route(`${routeUrl}/`).post(apiCreateBlog);
     app.route(`${routeUrl}/`).get(apiGetAllBlog);
@@ -18,7 +20,7 @@ export async function blogsRouteRegister(app: Application, routeUrl: string): Pr
     return new Promise((resolve, reject) => {
       resolve(app);
     })
-  } catch (err){
+  } catch (err) {
     err.title = `Error on '${routeUrl}' route registration ->`;
     err.path = __filename;
     appErrorHandler(err);

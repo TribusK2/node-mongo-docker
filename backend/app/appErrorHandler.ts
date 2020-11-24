@@ -2,7 +2,12 @@ import * as mongoose from "mongoose";
 
 import { appLogger } from "./logger-conf";
 
-export async function appErrorHandler(err: any) {
+/**
+ * Handle errors, occur on app operation.
+ * @param  {any} err
+ * @returns Promise
+ */
+export async function appErrorHandler(err: any): Promise<void> {
 
     const loggerPath = err.path || __filename;
     const errorTitle = err.title || "Unknow error ->";

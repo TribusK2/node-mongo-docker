@@ -3,7 +3,12 @@ import * as mongoose from "mongoose";
 import { Blog } from "../../model/blog-model";
 import { ErrorBlock } from "../../model/error-block-model";
 
-export function mongoIdValidation(id: string) {
+/**
+ * Validation of the incoming id with mongo id object
+ * @param  {string} id
+ * @returns void
+ */
+export function mongoIdValidation(id: string): void {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     const error: Partial<ErrorBlock> = {
       status: 400,
@@ -13,7 +18,12 @@ export function mongoIdValidation(id: string) {
   }
 }
 
-export function blogModelValidation(blog: Blog) {
+/**
+ * Validation of the incoming blog data with db model
+ * @param  {Blog} blog
+ * @returns void
+ */
+export function blogModelValidation(blog: Blog): void {
 
   let error: Partial<ErrorBlock> = {
     status: 400,
@@ -32,14 +42,20 @@ export function blogModelValidation(blog: Blog) {
     error.message = '';
 
     checkModel(patternModel, verifiedModel, error);
-
   }
 
 }
 
-function checkModel(pattern: any, model: any, error: Partial<ErrorBlock>){
+/**
+ * Common function to check any model
+ * @param  {any} pattern
+ * @param  {any} model
+ * @param  {Partial<ErrorBlock>} error
+ * @returns void
+ */
+function checkModel(pattern: any, model: any, error: Partial<ErrorBlock>): void {
   for (const property in model) {
-    if(!pattern.hasOwnProperty(property)) error.message = `${error.message} ${property};`;
+    if (!pattern.hasOwnProperty(property)) error.message = `${error.message} ${property};`;
   }
   if (error.message) {
     error.message = `Unexpected fields:${error.message}`;
