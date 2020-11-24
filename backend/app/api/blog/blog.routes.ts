@@ -7,19 +7,19 @@ import { apiGetBlogById } from './apiGetBlogById';
 import { apiRemoveBlog } from './apiRemoveBlog';
 import { apiUpdateBlog } from './apiUpdateBlog';
 
-export async function blogsRoutesRegister(app: Application): Promise<Application | undefined> {
+export async function blogsRouteRegister(app: Application, routeUrl: string): Promise<Application | undefined | any> {
   try {
-    app.route('/api/blogs').post(apiCreateBlog);
-    app.route('/api/blogs').get(apiGetAllBlog);
-    app.route('/api/blogs/:id').get(apiGetBlogById);
-    app.route('/api/blogs/:id').put(apiUpdateBlog);
-    app.route('/api/blogs/:id').delete(apiRemoveBlog);
+    app.route(`${routeUrl}/`).post(apiCreateBlog);
+    app.route(`${routeUrl}/`).get(apiGetAllBlog);
+    app.route(`${routeUrl}/:id`).get(apiGetBlogById);
+    app.route(`${routeUrl}/:id`).put(apiUpdateBlog);
+    app.route(`${routeUrl}/:id`).delete(apiRemoveBlog);
 
     return new Promise((resolve, reject) => {
-      resolve(app)
+      resolve(app);
     })
   } catch (err){
-    err.title = "Error on 'blogs' routes registration ->";
+    err.title = `Error on '${routeUrl}' route registration ->`;
     err.path = __filename;
     appErrorHandler(err);
   }
