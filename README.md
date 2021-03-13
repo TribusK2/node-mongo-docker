@@ -11,7 +11,7 @@ docker-compose up -d
 ```
 
 ## 1.3. Test the project
-Go to url `http://localhost:8090/` in the browser.
+Go to url `http://localhost:8090/api/blog` in the browser.
 
 # 2. Shared model
 ## 2.1. Common model

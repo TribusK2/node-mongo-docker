@@ -25,6 +25,8 @@ services:
             - 9090:9229
         volumes:
             - ./logs/backend:/backend_app/app/logs
+            - ./backend/app:/backend_app/app
+            - ./backend/model:/backend_app/model
         environment:
             WAIT_HOSTS: my_mongo_service:27017
             WAIT_HOSTS_TIMEOUT: 90

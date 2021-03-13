@@ -46,7 +46,7 @@ export async function apiCreateBlog(req: Request, res: Response, next: NextFunct
  * @param  {NextFunction} next
  * @returns Promise
  */
-export async function apiGetAllBlog(req: Request, res: Response, next: NextFunction): Promise<Response<RequestHandler> | undefined> {
+export async function apiGetAllBlog(req: Request, res: Response, next: NextFunction): Promise<Response<RequestHandler> | undefined | any> {
 
   try {
     const resultObj = await BlogModel.find().lean() as Blog[];
